@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mortgage Calculator | StonePathHome</title>
   <meta name="description" content="Estimate your monthly mortgage payment with home price, down payment, interest rate, loan term, taxes, insurance, HOA, and PMI." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
   <script src="scripts.js" defer></script>
 </head>
@@ -12,7 +13,13 @@
   <header class="site-header">
     <div class="container">
       <div class="topbar">
-        <a class="brand" href="index.html">StonePathHome</a>
+        <a class="brand" href="index.html" aria-label="StonePathHome home">
+          <img class="brand-logo" src="assets/stonepathhome-logo.webp" alt="StonePathHome logo" />
+          <span class="brand-copy">
+            <span class="brand-name">StonePathHome</span>
+            <span class="brand-tag">Homeownership clarity</span>
+          </span>
+        </a>
         <nav class="nav">
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
@@ -22,14 +29,20 @@
         </nav>
       </div>
       <div class="hero">
-        <h1>Mortgage calculator</h1>
-        <p>Estimate your full monthly payment with the main costs buyers usually need to consider before making an offer or choosing a budget.</p>
+        <span class="eyebrow">Main planning tool</span>
+        <h1>Helping you understand the true cost of homeownership</h1>
+        <p class="hero-subtitle">Estimate a fuller monthly payment with the costs buyers most often need to see together before they commit.</p>
       </div>
     </div>
   </header>
 
-  <main>
+  <main class="page-shell">
     <div class="container">
+      <section class="page-hero">
+        <h1>Mortgage calculator</h1>
+        <p>Use this premium v1 calculator to combine principal, interest, property taxes, homeowners insurance, HOA dues, and PMI into one calmer, more realistic estimate.</p>
+      </section>
+
       <section class="section calculator-layout">
         <div class="card">
           <h2>Loan details</h2>
@@ -71,7 +84,7 @@
             <button id="calculateMortgage" type="button">Calculate payment</button>
             <button id="resetMortgage" type="button" class="secondary">Reset</button>
           </div>
-          <p class="small-note">This calculator provides an estimate only and does not include every possible fee or escrow variation.</p>
+          <p class="small-note">This calculator provides an estimate only and does not include every possible lender fee, escrow variation, or closing-cost scenario.</p>
         </div>
 
         <div class="result-box">
@@ -93,7 +106,7 @@
       <section class="section grid">
         <div class="card">
           <h2>What this estimate includes</h2>
-          <p>The calculator combines your loan payment with property taxes, homeowners insurance, monthly HOA dues, and PMI if you enter those values. This helps you see a more realistic monthly number than principal and interest alone.</p>
+          <p>The calculator combines your loan payment with property taxes, homeowners insurance, monthly HOA dues, and PMI if you enter those values. That gives a more useful affordability number than principal and interest alone.</p>
         </div>
         <div class="card">
           <h2>Amortization snapshot</h2>
@@ -108,9 +121,7 @@
       <section class="section">
         <div class="card">
           <h2>Before relying on the number</h2>
-          <div class="notice">
-            Mortgage payments can also be affected by closing costs, lender fees, escrow setup, changing property taxes, rate locks, homeowners association changes, and insurance pricing. Use this as a planning estimate, then verify everything with your lender.
-          </div>
+          <div class="notice">Mortgage payments can also be affected by closing costs, lender fees, escrow setup, changing property taxes, rate locks, homeowners association changes, and insurance pricing. Use this as a planning estimate, then verify everything with your lender.</div>
         </div>
       </section>
     </div>

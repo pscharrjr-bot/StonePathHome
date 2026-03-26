@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mortgage vs Rent | StonePathHome</title>
   <meta name="description" content="Compare mortgage costs and renting tradeoffs to think more clearly about flexibility, ownership costs, and long-term planning." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
   <script src="scripts.js" defer></script>
 </head>
@@ -12,7 +13,13 @@
   <header class="site-header">
     <div class="container">
       <div class="topbar">
-        <a class="brand" href="index.html">StonePathHome</a>
+        <a class="brand" href="index.html" aria-label="StonePathHome home">
+          <img class="brand-logo" src="assets/stonepathhome-logo.webp" alt="StonePathHome logo" />
+          <span class="brand-copy">
+            <span class="brand-name">StonePathHome</span>
+            <span class="brand-tag">Homeownership clarity</span>
+          </span>
+        </a>
         <nav class="nav">
           <a href="index.html">Home</a>
           <a href="mortgage-calculator.html">Mortgage Calculator</a>
@@ -21,13 +28,19 @@
         </nav>
       </div>
       <div class="hero">
-        <h1>Mortgage vs rent</h1>
-        <p>Buying is not automatically better than renting. The right answer depends on your timeline, financial flexibility, repair tolerance, and how stable you want your housing costs to be.</p>
+        <span class="eyebrow">Buyer guide</span>
+        <h1>Helping you understand the true cost of homeownership</h1>
+        <p class="hero-subtitle">Buying is not automatically better than renting. The right answer depends on your timeline, financial flexibility, repair tolerance, and how stable you want your housing costs to be.</p>
       </div>
     </div>
   </header>
-  <main>
-    <div class="container">
+  <main class="page-shell">
+    <div class="container article-layout">
+      <section class="page-hero">
+        <h1>Mortgage vs rent</h1>
+        <p>Compare the tradeoffs more realistically by looking beyond the headline payment.</p>
+      </section>
+
       <section class="section grid">
         <div class="card">
           <h2>Why buying appeals to people</h2>
