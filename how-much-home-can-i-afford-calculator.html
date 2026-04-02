@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Much Home Can I Afford Calculator | StonePathHome</title>
+  <meta name="description" content="Estimate how much home may fit your budget by working backward from a target monthly mortgage payment." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="index.html" aria-label="StonePathHome home">
+          <img class="brand-logo" src="assets/stonepathhome-logo.webp" alt="StonePathHome logo" />
+          <span class="brand-copy">
+            <span class="brand-name">StonePathHome</span>
+            <span class="brand-tag">Homeownership clarity</span>
+          </span>
+        </a>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </nav>
+      </div>
+      <div class="hero">
+        <span class="eyebrow">Budget-first planning tool</span>
+        <h1>Helping you estimate how much home may fit your budget</h1>
+        <p class="hero-subtitle">Work backward from your target monthly payment to estimate a home price range with taxes, insurance, HOA, and PMI included.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="container">
+      <section class="page-hero">
+        <h1>How much home can I afford calculator</h1>
+        <p>Use this calculator to start with your target monthly housing budget and estimate the maximum home price that may fit. It is built for planning, comparison, and affordability framing before you talk to a lender.</p>
+      </section>
+
+      <section class="section calculator-layout">
+        <div class="card">
+          <h2>Affordability inputs</h2>
+          <div class="input-grid">
+            <div>
+              <label for="targetMonthlyPayment">Target monthly housing payment</label>
+              <input id="targetMonthlyPayment" type="number" value="2600" min="0" step="50" />
+            </div>
+            <div>
+              <label for="affordInterestRate">Interest rate (%)</label>
+              <input id="affordInterestRate" type="number" value="6.75" min="0" step="0.01" />
+            </div>
+            <div>
+              <label for="affordLoanTerm">Loan term (years)</label>
+              <input id="affordLoanTerm" type="number" value="30" min="1" step="1" />
+            </div>
+            <div>
+              <label for="affordDownPayment">Down payment</label>
+              <input id="affordDownPayment" type="number" value="60000" min="0" step="1000" />
+            </div>
+            <div>
+              <label for="affordPropertyTaxes">Annual property taxes</label>
+              <input id="affordPropertyTaxes" type="number" value="4200" min="0" step="100" />
+            </div>
+            <div>
+              <label for="affordHomeInsurance">Annual homeowners insurance</label>
+              <input id="affordHomeInsurance" type="number" value="1600" min="0" step="100" />
+            </div>
+            <div>
+              <label for="affordHoa">Monthly HOA</label>
+              <input id="affordHoa" type="number" value="0" min="0" step="10" />
+            </div>
+            <div>
+              <label for="affordPmi">Monthly PMI</label>
+              <input id="affordPmi" type="number" value="0" min="0" step="10" />
+            </div>
+          </div>
+          <div class="actions">
+            <button id="calculateAffordability" type="button">Estimate home price</button>
+            <button id="resetAffordability" type="button" class="secondary">Reset</button>
+          </div>
+          <p class="small-note">This calculator provides an estimate only and does not account for lender underwriting rules, debt-to-income thresholds, reserve requirements, or every program-specific loan constraint.</p>
+        </div>
+
+        <div class="result-box">
+          <div class="result-label">Estimated maximum home price</div>
+          <div id="estimatedHomePrice" class="result-value">$0</div>
+          <div class="table-like">
+            <div class="table-row"><strong>Estimated loan amount:</strong> <span id="estimatedLoanAmount">$0</span></div>
+            <div class="table-row"><strong>Monthly principal + interest:</strong> <span id="estimatedPrincipalInterest">$0</span></div>
+            <div class="table-row"><strong>Property taxes:</strong> <span id="estimatedMonthlyTaxes">$0</span></div>
+            <div class="table-row"><strong>Homeowners insurance:</strong> <span id="estimatedMonthlyInsurance">$0</span></div>
+            <div class="table-row"><strong>HOA:</strong> <span id="estimatedMonthlyHoa">$0</span></div>
+            <div class="table-row"><strong>PMI:</strong> <span id="estimatedMonthlyPmi">$0</span></div>
+            <div class="table-row"><strong>Budget for principal + interest:</strong> <span id="budgetForPrincipalInterest">$0</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <div class="card">
+          <h2>What this estimate includes</h2>
+          <p>The calculator starts with your target total monthly payment, then subtracts taxes, homeowners insurance, HOA dues, and PMI to estimate how much principal and interest payment room remains. From there, it works backward to estimate a loan amount and home price.</p>
+        </div>
+        <div class="card">
+          <h2>How to use the result</h2>
+          <p>Think of the result as a planning range, not a guaranteed approval number. It can help you compare scenarios, test different down payments, or see how taxes and insurance change what feels affordable.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="card">
+          <h2>Before relying on the number</h2>
+          <div class="notice">Affordability can change based on debt-to-income ratios, credit profile, cash reserves, lender overlays, loan type, property tax changes, homeowners insurance pricing, PMI structure, and closing costs. Use this as a planning estimate, then verify your real qualification details with a lender.</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>© StonePathHome</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="mortgage-calculator.html">Mortgage Calculator</a>
+        <a href="how-much-home-can-i-afford-calculator.html">Affordability Calculator</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

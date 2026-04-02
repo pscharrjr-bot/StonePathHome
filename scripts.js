@@ -97,14 +97,94 @@ function runMortgageCalculator() {
   setText('balanceAfterYearOne', formatCurrency(balance));
 }
 
+function resetAffordabilityForm() {
+  const defaults = {
+    targetMonthlyPayment: 2600,
+    affordInterestRate: 6.75,
+    affordLoanTerm: 30,
+    affordDownPayment: 60000,
+    affordPropertyTaxes: 4200,
+    affordHomeInsurance: 1600,
+    affordHoa: 0,
+    affordPmi: 0,
+  };
+
+  Object.entries(defaults).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = value;
+  });
+
+  runAffordabilityCalculator();
+}
+
+function runAffordabilityCalculator() {
+  const targetMonthlyPayment = getInputValue('targetMonthlyPayment');
+  const interestRate = getInputValue('affordInterestRate');
+  const loanTerm = getInputValue('affordLoanTerm');
+  const downPayment = getInputValue('affordDownPayment');
+  const propertyTaxes = getInputValue('affordPropertyTaxes');
+  const homeInsurance = getInputValue('affordHomeInsurance');
+  const hoa = getInputValue('affordHoa');
+  const pmi = getInputValue('affordPmi');
+
+  if ([targetMonthlyPayment, interestRate, loanTerm, downPayment, propertyTaxes, homeInsurance, hoa, pmi].some((v) => !Number.isFinite(v) || v < 0)) {
+    return;
+  }
+
+  const monthlyTaxes = propertyTaxes / 12;
+  const monthlyInsurance = homeInsurance / 12;
+  const budgetForPrincipalInterest = targetMonthlyPayment - monthlyTaxes - monthlyInsurance - hoa - pmi;
+
+  if (budgetForPrincipalInterest <= 0) {
+    setText('estimatedHomePrice', '$0');
+    setText('estimatedLoanAmount', '$0');
+    setText('estimatedPrincipalInterest', '$0');
+    setText('estimatedMonthlyTaxes', formatCurrency(monthlyTaxes));
+    setText('estimatedMonthlyInsurance', formatCurrency(monthlyInsurance));
+    setText('estimatedMonthlyHoa', formatCurrency(hoa));
+    setText('estimatedMonthlyPmi', formatCurrency(pmi));
+    setText('budgetForPrincipalInterest', '$0');
+    return;
+  }
+
+  const totalMonths = loanTerm * 12;
+  const monthlyRate = interestRate / 100 / 12;
+  let estimatedLoanAmount = 0;
+
+  if (monthlyRate === 0) {
+    estimatedLoanAmount = budgetForPrincipalInterest * totalMonths;
+  } else {
+    estimatedLoanAmount = budgetForPrincipalInterest * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / (monthlyRate * Math.pow(1 + monthlyRate, totalMonths)));
+  }
+
+  const estimatedHomePrice = estimatedLoanAmount + downPayment;
+
+  setText('estimatedHomePrice', formatCurrency(estimatedHomePrice));
+  setText('estimatedLoanAmount', formatCurrency(estimatedLoanAmount));
+  setText('estimatedPrincipalInterest', formatCurrency(budgetForPrincipalInterest));
+  setText('estimatedMonthlyTaxes', formatCurrency(monthlyTaxes));
+  setText('estimatedMonthlyInsurance', formatCurrency(monthlyInsurance));
+  setText('estimatedMonthlyHoa', formatCurrency(hoa));
+  setText('estimatedMonthlyPmi', formatCurrency(pmi));
+  setText('budgetForPrincipalInterest', formatCurrency(budgetForPrincipalInterest));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const calculateButton = document.getElementById('calculateMortgage');
   const resetButton = document.getElementById('resetMortgage');
+  const calculateAffordabilityButton = document.getElementById('calculateAffordability');
+  const resetAffordabilityButton = document.getElementById('resetAffordability');
 
   if (calculateButton) calculateButton.addEventListener('click', runMortgageCalculator);
   if (resetButton) resetButton.addEventListener('click', resetMortgageForm);
+  if (calculateAffordabilityButton) calculateAffordabilityButton.addEventListener('click', runAffordabilityCalculator);
+  if (resetAffordabilityButton) resetAffordabilityButton.addEventListener('click', resetAffordabilityForm);
 
   if (document.getElementById('monthlyPayment')) {
     runMortgageCalculator();
+  }
+
+  if (document.getElementById('estimatedHomePrice')) {
+    runAffordabilityCalculator();
   }
 });
