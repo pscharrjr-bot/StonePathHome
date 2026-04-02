@@ -7,7 +7,6 @@
   <meta name="description" content="StonePathHome helps buyers estimate monthly mortgage payments with taxes, insurance, HOA, and PMI in one refined mortgage planning experience." />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="scripts.js" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -22,6 +21,8 @@
         </a>
         <nav class="nav">
           <a href="mortgage-calculator.html">Mortgage Calculator</a>
+          <a href="how-much-home-can-i-afford-calculator.html">Affordability Calculator</a>
+          <a href="resources.html">Resources</a>
           <a href="about.html">About</a>
           <a href="contact.html">Contact</a>
           <a href="privacy.html">Privacy</a>
@@ -31,12 +32,12 @@
       <div class="hero">
         <span class="eyebrow">Mortgage planning, elevated</span>
         <h1>Helping you understand the true cost of homeownership</h1>
-        <p class="hero-subtitle">A cleaner, more realistic mortgage planning experience with room for taxes, insurance, HOA dues, and PMI — because the real monthly number matters more than the teaser payment.</p>
+        <p class="hero-subtitle">StonePathHome gives buyers two core planning paths: estimate a full mortgage payment from a target home price, or work backward from a target monthly budget to estimate how much home may fit.</p>
         <div class="hero-actions">
-          <a class="button" href="mortgage-calculator.html">Use the mortgage calculator</a>
+          <a class="button" href="#tools">View our tools</a>
           <a class="button secondary" href="#guides">Explore the guides</a>
         </div>
-        <div class="hero-panel">StonePathHome pairs practical calculation with a calmer, more premium design so buyers can evaluate a home with more confidence and less noise.</div>
+        <div class="hero-panel">StonePathHome is being developed as a home-buying resource library, not just a calculator. The site combines planning tools with practical buyer education so visitors can make more informed decisions.</div>
       </div>
     </div>
   </header>
@@ -44,117 +45,55 @@
   <main class="page-shell">
     <div class="container">
       <section class="section stat-grid">
-        <div class="stat">
-          <div class="stat-label">Built around real costs</div>
-          <div class="stat-value">PITI + HOA + PMI</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Design direction</div>
-          <div class="stat-value">Deep sage + warm ivory</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Launch focus</div>
-          <div class="stat-value">One strong calculator</div>
-        </div>
-      </section>
-
-      <section id="why-stonepathhome" class="section">
-        <h2>What StonePathHome helps you estimate</h2>
-        <p class="lead">A mortgage payment is not just principal and interest. This experience is built to reflect the costs buyers most often underestimate while still keeping the interface calm and readable.</p>
-        <div class="grid">
-          <div class="card feature-card">
-            <h3>Principal and interest</h3>
-            <p>Estimate the core monthly payment using home price, down payment, interest rate, and loan term.</p>
-          </div>
-          <div class="card feature-card">
-            <h3>Taxes and insurance</h3>
-            <p>Factor in annual property taxes and homeowners insurance so the monthly estimate feels more like the real commitment.</p>
-          </div>
-          <div class="card feature-card">
-            <h3>HOA and PMI</h3>
-            <p>Include optional monthly HOA dues and private mortgage insurance to avoid false affordability signals.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section grid">
-        <div class="card">
-          <h2>A more premium planning experience</h2>
-          <p>StonePathHome is shifting from a basic utility look toward a calmer editorial feel: softer contrast, more intentional typography, and a layout that suggests trust instead of clutter. Finance tools should feel reassuring, not stressful.</p>
-        </div>
-        <div class="card">
-          <h2>Who this is for</h2>
-          <ul class="checklist">
-            <li>First-time home buyers comparing price ranges</li>
-            <li>People trying to understand how taxes and insurance affect affordability</li>
-            <li>Buyers choosing between different down payment paths</li>
-            <li>Anyone who wants a more realistic payment estimate before talking to lenders</li>
-          </ul>
-        </div>
+        <div class="stat"><div class="stat-label">Built around real costs</div><div class="stat-value">PITI + HOA + PMI</div></div>
+        <div class="stat"><div class="stat-label">Planning focus</div><div class="stat-value">Monthly payment clarity</div></div>
+        <div class="stat"><div class="stat-label">Launch focus</div><div class="stat-value">Tools + buyer guides</div></div>
       </section>
 
       <section class="section">
-        <div class="card">
-          <h2>Start with the main calculator</h2>
-          <p>The main StonePathHome calculator remains the center of the site. It shows monthly payment, payment breakdown, total loan cost, and a simple amortization snapshot inside a cleaner white-card interface designed to feel more valuable immediately.</p>
-          <div class="hero-actions">
-            <a class="button" href="mortgage-calculator.html">Open calculator</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="guides" class="section">
-        <h2>Guides that support the calculator</h2>
-        <p class="lead">These pages help frame the numbers so visitors are not just getting an answer, but actually understanding what that answer means.</p>
+        <h2>What StonePathHome helps you estimate</h2>
+        <p class="lead">A mortgage payment is not just principal and interest. StonePathHome is built to reflect the costs buyers most often underestimate while keeping the experience calm, readable, and practical.</p>
         <div class="grid">
-          <a class="card" href="how-much-house-can-i-afford.html">
-            <h3>How much house can I afford?</h3>
-            <p>Think through affordability using income, debt, taxes, insurance, and payment comfort instead of price alone.</p>
-          </a>
-          <a class="card" href="mortgage-vs-rent.html">
-            <h3>Mortgage vs rent</h3>
-            <p>Compare ownership and renting tradeoffs more realistically by looking beyond the headline payment.</p>
-          </a>
-          <a class="card" href="how-pmi-works.html">
-            <h3>How PMI works</h3>
-            <p>Understand how private mortgage insurance can affect the true monthly cost of buying.</p>
-          </a>
-          <a class="card" href="15-year-vs-30-year-mortgage.html">
-            <h3>15-year vs 30-year mortgage</h3>
-            <p>See the tradeoff between a higher monthly payment and lower total interest over time.</p>
-          </a>
-          <a class="card" href="fixed-vs-adjustable-rate-mortgage.html">
-            <h3>Fixed vs adjustable rate mortgage</h3>
-            <p>Learn the difference between payment predictability and rate flexibility before choosing a loan structure.</p>
-          </a>
+          <div class="card feature-card"><h3>Principal and interest</h3><p>Estimate the core monthly payment using home price, down payment, interest rate, and loan term.</p></div>
+          <div class="card feature-card"><h3>Taxes and insurance</h3><p>Include property taxes and homeowners insurance to get closer to the real cost of ownership.</p></div>
+          <div class="card feature-card"><h3>HOA and PMI</h3><p>Factor in optional HOA dues and private mortgage insurance so the payment estimate is more realistic.</p></div>
         </div>
       </section>
 
       <section class="section grid">
-        <div class="card">
-          <h2>Where the site goes next</h2>
-          <p>Future versions can add affordability tools, refinance calculators, email capture, and richer editorial content while keeping the same premium tone.</p>
+        <div class="card"><h2>What these tools help you do</h2><ul class="checklist"><li>Estimate a fuller monthly payment from a target home price</li><li>Work backward from a comfortable monthly budget</li><li>Compare affordability scenarios more realistically</li><li>Understand how taxes, insurance, HOA, and PMI shape the payment</li></ul></div>
+        <div class="card"><h2>Who this is for</h2><ul class="checklist"><li>First-time home buyers comparing price ranges</li><li>People trying to understand how taxes and insurance affect affordability</li><li>Buyers choosing between different down payment paths</li><li>Anyone who wants a more realistic payment estimate before talking to lenders</li></ul></div>
+      </section>
+
+      <section id="tools" class="section grid">
+        <div class="card"><h2>Mortgage Payment Calculator</h2><p>Estimate monthly principal, interest, taxes, insurance, HOA, and PMI when you already have a target home price in mind.</p><div class="hero-actions"><a class="button" href="mortgage-calculator.html">Open calculator</a></div></div>
+        <div class="card"><h2>How Much Home Can I Afford Calculator</h2><p>Use the budget-first calculator to work backward from your target monthly payment and estimate the maximum home price that may fit your budget.</p><div class="hero-actions"><a class="button" href="how-much-home-can-i-afford-calculator.html">Open affordability calculator</a></div></div>
+      </section>
+
+      <section id="guides" class="section">
+        <h2>Guides and resources</h2>
+        <p class="lead">StonePathHome is built to be more than a calculator. These guides help explain the costs, tradeoffs, and terms that shape a home-buying decision in the real world.</p>
+        <div class="grid">
+          <a class="card" href="how-much-house-can-i-afford.html"><h3>How much house can I afford?</h3><p>Think through affordability using income, debt, taxes, insurance, and payment comfort instead of price alone.</p></a>
+          <a class="card" href="mortgage-vs-rent.html"><h3>Mortgage vs rent</h3><p>Compare ownership and renting tradeoffs more realistically by looking beyond the headline payment.</p></a>
+          <a class="card" href="what-is-pmi.html"><h3>What is PMI?</h3><p>Learn what PMI is, why lenders require it, how it affects your payment, and when it may be removed.</p></a>
+          <a class="card" href="what-is-escrow.html"><h3>What is escrow?</h3><p>Understand how escrow accounts work, why lenders use them, and how they affect your monthly mortgage payment.</p></a>
+          <a class="card" href="what-are-closing-costs.html"><h3>What are closing costs?</h3><p>Learn what closing costs include, why buyers underestimate them, and why they matter alongside the down payment.</p></a>
+          <a class="card" href="how-much-down-payment-do-you-need.html"><h3>How much down payment do you need?</h3><p>Understand how down payment size changes your loan, monthly payment, and cash needs.</p></a>
+          <a class="card" href="what-is-homeowners-insurance.html"><h3>What is homeowners insurance?</h3><p>See why insurance matters for affordability and why it is part of the real monthly housing cost.</p></a>
+          <a class="card" href="how-property-taxes-affect-mortgage-payments.html"><h3>How property taxes affect mortgage payments</h3><p>Learn why taxes can change the monthly payment more than many buyers expect.</p></a>
+          <a class="card" href="what-credit-score-do-you-need-for-a-mortgage.html"><h3>What credit score do you need for a mortgage?</h3><p>See how credit score affects loan options, rates, and monthly payment even when there is no single magic number.</p></a>
+          <a class="card" href="resources.html"><h3>Browse the full resource library</h3><p>Use the dedicated resources page to navigate all of StonePathHome’s calculators and buyer guides in one place.</p></a>
         </div>
-        <div class="card">
-          <h2>Important note</h2>
-          <p class="muted">StonePathHome provides estimates for planning and education. Loan terms, taxes, insurance costs, and lender fees vary. Always confirm exact numbers with a lender, advisor, or qualified professional.</p>
-        </div>
+      </section>
+
+      <section class="section grid">
+        <div class="card"><h2>Explore the full resource library</h2><p>Use the dedicated <a href="resources.html">resources page</a> to browse StonePathHome’s calculators and buyer guides in one place. The site is being developed as a practical publishing resource, not just a single tool.</p></div>
+        <div class="card"><h2>Important note</h2><p class="muted">StonePathHome provides estimates for planning and education. Loan terms, taxes, insurance costs, and lender fees vary. Always confirm exact numbers with a lender, advisor, or qualified professional.</p></div>
       </section>
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div>© StonePathHome</div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="mortgage-calculator.html">Mortgage Calculator</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms</a>
-      </div>
-    </div>
-  </footer>
+  <footer class="site-footer"><div class="container"><div>© StonePathHome</div><div class="footer-links"><a href="index.html">Home</a><a href="mortgage-calculator.html">Mortgage Calculator</a><a href="how-much-home-can-i-afford-calculator.html">Affordability Calculator</a><a href="resources.html">Resources</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a></div></div></footer>
 </body>
 </html>
