@@ -169,16 +169,102 @@ function runAffordabilityCalculator() {
   setText('budgetForPrincipalInterest', formatCurrency(budgetForPrincipalInterest));
 }
 
+function formatMonths(months) {
+  if (!Number.isFinite(months) || months <= 0) return '0 months';
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+  if (years <= 0) return `${remainingMonths} month${remainingMonths === 1 ? '' : 's'}`;
+  if (remainingMonths === 0) return `${years} year${years === 1 ? '' : 's'}`;
+  return `${years} year${years === 1 ? '' : 's'} ${remainingMonths} month${remainingMonths === 1 ? '' : 's'}`;
+}
+
+function runExtraPaymentScenario(balance, monthlyRate, scheduledPayment, extraMonthly, oneTimeExtra) {
+  let currentBalance = balance - oneTimeExtra;
+  if (currentBalance < 0) currentBalance = 0;
+  let totalInterest = 0;
+  let months = 0;
+  let totalExtraPaid = oneTimeExtra > 0 ? oneTimeExtra : 0;
+
+  while (currentBalance > 0 && months < 1000) {
+    const interest = currentBalance * monthlyRate;
+    const payment = scheduledPayment + extraMonthly;
+    const principalPaid = payment - interest;
+    if (principalPaid <= 0) break;
+
+    totalInterest += interest;
+    currentBalance -= principalPaid;
+    months += 1;
+    totalExtraPaid += extraMonthly;
+  }
+
+  return {
+    months,
+    totalInterest,
+    totalExtraPaid: Math.max(totalExtraPaid, 0),
+  };
+}
+
+function resetExtraPaymentForm() {
+  const defaults = {
+    extraCurrentBalance: 280000,
+    extraInterestRate: 6.75,
+    extraRemainingTerm: 30,
+    extraMonthlyPayment: 1816,
+    extraMonthlyAmount: 200,
+    extraOneTimeAmount: 5000,
+  };
+
+  Object.entries(defaults).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = value;
+  });
+
+  runExtraPaymentCalculator();
+}
+
+function runExtraPaymentCalculator() {
+  const balance = getInputValue('extraCurrentBalance');
+  const interestRate = getInputValue('extraInterestRate');
+  const remainingTerm = getInputValue('extraRemainingTerm');
+  const monthlyPayment = getInputValue('extraMonthlyPayment');
+  const extraMonthly = getInputValue('extraMonthlyAmount');
+  const oneTimeExtra = getInputValue('extraOneTimeAmount');
+
+  if ([balance, interestRate, remainingTerm, monthlyPayment, extraMonthly, oneTimeExtra].some((v) => !Number.isFinite(v) || v < 0)) {
+    return;
+  }
+
+  const monthlyRate = interestRate / 100 / 12;
+  const originalMonths = remainingTerm * 12;
+  const originalInterest = monthlyPayment * originalMonths - balance;
+
+  const accelerated = runExtraPaymentScenario(balance, monthlyRate, monthlyPayment, extraMonthly, oneTimeExtra);
+  const monthsSaved = Math.max(originalMonths - accelerated.months, 0);
+  const interestSaved = Math.max(originalInterest - accelerated.totalInterest, 0);
+
+  setText('extraOriginalPayoffTime', formatMonths(originalMonths));
+  setText('extraNewPayoffTime', formatMonths(accelerated.months));
+  setText('extraMonthsSaved', `${monthsSaved}`);
+  setText('extraOriginalInterest', formatCurrency(originalInterest));
+  setText('extraNewInterest', formatCurrency(accelerated.totalInterest));
+  setText('extraInterestSaved', formatCurrency(interestSaved));
+  setText('extraTotalExtraPaid', formatCurrency(accelerated.totalExtraPaid));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const calculateButton = document.getElementById('calculateMortgage');
   const resetButton = document.getElementById('resetMortgage');
   const calculateAffordabilityButton = document.getElementById('calculateAffordability');
   const resetAffordabilityButton = document.getElementById('resetAffordability');
+  const calculateExtraPaymentButton = document.getElementById('calculateExtraPayment');
+  const resetExtraPaymentButton = document.getElementById('resetExtraPayment');
 
   if (calculateButton) calculateButton.addEventListener('click', runMortgageCalculator);
   if (resetButton) resetButton.addEventListener('click', resetMortgageForm);
   if (calculateAffordabilityButton) calculateAffordabilityButton.addEventListener('click', runAffordabilityCalculator);
   if (resetAffordabilityButton) resetAffordabilityButton.addEventListener('click', resetAffordabilityForm);
+  if (calculateExtraPaymentButton) calculateExtraPaymentButton.addEventListener('click', runExtraPaymentCalculator);
+  if (resetExtraPaymentButton) resetExtraPaymentButton.addEventListener('click', resetExtraPaymentForm);
 
   if (document.getElementById('monthlyPayment')) {
     runMortgageCalculator();
@@ -186,5 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (document.getElementById('estimatedHomePrice')) {
     runAffordabilityCalculator();
+  }
+
+  if (document.getElementById('extraInterestSaved')) {
+    runExtraPaymentCalculator();
   }
 });

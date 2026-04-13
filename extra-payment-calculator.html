@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Extra Payment Calculator | StonePathHome</title>
+  <meta name="description" content="See how extra mortgage payments can shorten your payoff timeline and reduce total interest. Estimate months saved, interest saved, and your faster payoff path." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- MailerLite Universal -->
+  <script>
+      (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+      .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+      n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+      (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+      ml('account', '2225146');
+  </script>
+  <!-- End MailerLite Universal -->
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="index.html" aria-label="StonePathHome home">
+          <img class="brand-logo" src="assets/stonepathhome-logo.webp" alt="StonePathHome logo" />
+          <span class="brand-copy">
+            <span class="brand-name">StonePathHome</span>
+            <span class="brand-tag">Homeownership clarity</span>
+          </span>
+        </a>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="mortgage-calculator.html">Mortgage Calculator</a>
+          <a href="how-much-home-can-i-afford-calculator.html">Affordability Calculator</a>
+          <a href="resources.html">Resources</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+      <div class="hero">
+        <span class="eyebrow">Mortgage planning tool</span>
+        <h1>Extra payment calculator</h1>
+        <p class="hero-subtitle">Estimate how extra monthly and one-time payments may shorten your mortgage payoff timeline and reduce total interest over the life of the loan.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="container">
+      <section class="page-hero">
+        <h1>Extra payment calculator</h1>
+        <p>Use this calculator to compare your original mortgage payoff path against an accelerated payoff plan. It can help you estimate months saved, interest saved, and how much faster your loan may disappear if you consistently pay extra.</p>
+      </section>
+
+      <section class="section calculator-layout">
+        <div class="card">
+          <h2>Loan and extra payment details</h2>
+          <div class="input-grid">
+            <div>
+              <label for="extraCurrentBalance">Current loan balance</label>
+              <input id="extraCurrentBalance" type="number" min="0" step="1000" value="280000" />
+            </div>
+            <div>
+              <label for="extraInterestRate">Interest rate (%)</label>
+              <input id="extraInterestRate" type="number" min="0" step="0.01" value="6.75" />
+            </div>
+            <div>
+              <label for="extraRemainingTerm">Remaining loan term (years)</label>
+              <input id="extraRemainingTerm" type="number" min="1" step="1" value="30" />
+            </div>
+            <div>
+              <label for="extraMonthlyPayment">Current monthly principal + interest payment</label>
+              <input id="extraMonthlyPayment" type="number" min="0" step="10" value="1816" />
+            </div>
+            <div>
+              <label for="extraMonthlyAmount">Extra monthly payment</label>
+              <input id="extraMonthlyAmount" type="number" min="0" step="10" value="200" />
+            </div>
+            <div>
+              <label for="extraOneTimeAmount">One-time extra payment</label>
+              <input id="extraOneTimeAmount" type="number" min="0" step="100" value="5000" />
+            </div>
+          </div>
+          <div class="actions">
+            <button id="calculateExtraPayment" type="button">Calculate payoff impact</button>
+            <button id="resetExtraPayment" type="button" class="secondary">Reset</button>
+          </div>
+          <p class="small-note">This calculator provides a planning estimate only. It assumes your extra payments go directly toward principal and does not account for lender-specific payment handling rules.</p>
+        </div>
+
+        <div class="result-box">
+          <div class="result-label">Estimated interest saved</div>
+          <div id="extraInterestSaved" class="result-value">$0</div>
+          <div class="table-like">
+            <div class="table-row"><strong>Original payoff time:</strong> <span id="extraOriginalPayoffTime">0 months</span></div>
+            <div class="table-row"><strong>New payoff time:</strong> <span id="extraNewPayoffTime">0 months</span></div>
+            <div class="table-row"><strong>Months saved:</strong> <span id="extraMonthsSaved">0</span></div>
+            <div class="table-row"><strong>Original total interest:</strong> <span id="extraOriginalInterest">$0</span></div>
+            <div class="table-row"><strong>New total interest:</strong> <span id="extraNewInterest">$0</span></div>
+            <div class="table-row"><strong>Total extra paid:</strong> <span id="extraTotalExtraPaid">$0</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <div class="card">
+          <h2>How to think about extra payments</h2>
+          <p>Extra payments can be a powerful way to reduce total interest and shorten the life of the loan. But the best choice depends on your broader budget, your emergency savings, and whether you still have enough flexibility after making those extra payments.</p>
+        </div>
+        <div class="card">
+          <h2>What this calculator does</h2>
+          <p>This tool compares your current mortgage payoff path against an accelerated version using both a recurring extra monthly payment and a one-time extra payment. That makes it easier to see whether the payoff benefit feels worth the extra cash commitment.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="card email-capture-card">
+          <div class="email-capture-copy">
+            <span class="eyebrow eyebrow-dark">Free worksheet</span>
+            <h2>Get the free first-time home buyer checklist</h2>
+            <p>If you are still planning the purchase side of the journey, get the free worksheet to organize your budget, compare lenders, and think through your next steps more clearly.</p>
+            <ul class="checklist">
+              <li>Budget starter worksheet</li>
+              <li>Cash-needed planning prompts</li>
+              <li>Lender comparison questions</li>
+            </ul>
+            <p class="small-note">Free download. No spam. Unsubscribe anytime.</p>
+          </div>
+          <div class="email-capture-form">
+            <div class="ml-embedded" data-form="ieBLQe"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <div class="card">
+          <h2>Related reading</h2>
+          <p>If you want to understand the broader monthly payment first, read <a href="what-is-included-in-a-monthly-mortgage-payment.html">What Is Included in a Monthly Mortgage Payment?</a>.</p>
+          <p>If you are still deciding what overall payment fits your life, use the <a href="how-much-home-can-i-afford-calculator.html">affordability calculator</a>.</p>
+        </div>
+        <div class="card">
+          <h2>Try the main mortgage tool</h2>
+          <p>If you want to estimate the original mortgage payment itself before testing extra payments, start with the <a href="mortgage-calculator.html">mortgage calculator</a>.</p>
+          <p>You can also use <a href="how-much-income-do-you-need-for-a-mortgage.html">How Much Income Do You Need for a Mortgage?</a> if you are still pressure-testing the payment against your broader budget.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>© StonePathHome</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="mortgage-calculator.html">Mortgage Calculator</a>
+        <a href="resources.html">Resources</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
