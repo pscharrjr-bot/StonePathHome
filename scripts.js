@@ -178,29 +178,37 @@ function formatMonths(months) {
   return `${years} year${years === 1 ? '' : 's'} ${remainingMonths} month${remainingMonths === 1 ? '' : 's'}`;
 }
 
-function runExtraPaymentScenario(balance, monthlyRate, scheduledPayment, extraMonthly, oneTimeExtra) {
-  let currentBalance = balance - oneTimeExtra;
-  if (currentBalance < 0) currentBalance = 0;
+function runExtraPaymentScenario(balance, monthlyRate, paymentAmount, oneTimeExtra) {
+  let currentBalance = Math.max(balance - oneTimeExtra, 0);
   let totalInterest = 0;
   let months = 0;
-  let totalExtraPaid = oneTimeExtra > 0 ? oneTimeExtra : 0;
 
-  while (currentBalance > 0 && months < 1000) {
+  if (currentBalance <= 0) {
+    return { months: 0, totalInterest: 0 };
+  }
+
+  while (currentBalance > 0 && months < 1200) {
     const interest = currentBalance * monthlyRate;
-    const payment = scheduledPayment + extraMonthly;
-    const principalPaid = payment - interest;
-    if (principalPaid <= 0) break;
+    let principalPaid;
+
+    if (monthlyRate === 0) {
+      principalPaid = paymentAmount;
+    } else {
+      principalPaid = paymentAmount - interest;
+    }
+
+    if (principalPaid <= 0) {
+      return { months: Infinity, totalInterest: Infinity };
+    }
 
     totalInterest += interest;
     currentBalance -= principalPaid;
     months += 1;
-    totalExtraPaid += extraMonthly;
   }
 
   return {
     months,
     totalInterest,
-    totalExtraPaid: Math.max(totalExtraPaid, 0),
   };
 }
 
@@ -235,20 +243,34 @@ function runExtraPaymentCalculator() {
   }
 
   const monthlyRate = interestRate / 100 / 12;
-  const originalMonths = remainingTerm * 12;
-  const originalInterest = monthlyPayment * originalMonths - balance;
+  const originalPayment = Math.max(monthlyPayment, calculateMortgagePayment(balance, monthlyRate, remainingTerm * 12));
+  const acceleratedPayment = originalPayment + extraMonthly;
 
-  const accelerated = runExtraPaymentScenario(balance, monthlyRate, monthlyPayment, extraMonthly, oneTimeExtra);
-  const monthsSaved = Math.max(originalMonths - accelerated.months, 0);
-  const interestSaved = Math.max(originalInterest - accelerated.totalInterest, 0);
+  const originalScenario = runExtraPaymentScenario(balance, monthlyRate, originalPayment, 0);
+  const acceleratedScenario = runExtraPaymentScenario(balance, monthlyRate, acceleratedPayment, oneTimeExtra);
 
-  setText('extraOriginalPayoffTime', formatMonths(originalMonths));
-  setText('extraNewPayoffTime', formatMonths(accelerated.months));
+  if (!Number.isFinite(originalScenario.months) || !Number.isFinite(acceleratedScenario.months)) {
+    setText('extraOriginalPayoffTime', 'Unable to calculate');
+    setText('extraNewPayoffTime', 'Unable to calculate');
+    setText('extraMonthsSaved', '0');
+    setText('extraOriginalInterest', '$0');
+    setText('extraNewInterest', '$0');
+    setText('extraInterestSaved', '$0');
+    setText('extraTotalExtraPaid', '$0');
+    return;
+  }
+
+  const monthsSaved = Math.max(originalScenario.months - acceleratedScenario.months, 0);
+  const interestSaved = Math.max(originalScenario.totalInterest - acceleratedScenario.totalInterest, 0);
+  const totalExtraPaid = oneTimeExtra + (extraMonthly * acceleratedScenario.months);
+
+  setText('extraOriginalPayoffTime', formatMonths(originalScenario.months));
+  setText('extraNewPayoffTime', formatMonths(acceleratedScenario.months));
   setText('extraMonthsSaved', `${monthsSaved}`);
-  setText('extraOriginalInterest', formatCurrency(originalInterest));
-  setText('extraNewInterest', formatCurrency(accelerated.totalInterest));
+  setText('extraOriginalInterest', formatCurrency(originalScenario.totalInterest));
+  setText('extraNewInterest', formatCurrency(acceleratedScenario.totalInterest));
   setText('extraInterestSaved', formatCurrency(interestSaved));
-  setText('extraTotalExtraPaid', formatCurrency(accelerated.totalExtraPaid));
+  setText('extraTotalExtraPaid', formatCurrency(totalExtraPaid));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
